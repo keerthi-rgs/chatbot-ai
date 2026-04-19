@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'https://github.com/your-username/chatbot-ai.git'
+               git 'https://github.com/keerthi-rgs/chatbot-ai.git'
             }
         }
 
