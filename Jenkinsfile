@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-               git 'https://github.com/keerthi-rgs/chatbot-ai.git'
-            }
-        }
-
         stage('Install') {
             steps {
                 bat 'pip install -r requirements.txt'
