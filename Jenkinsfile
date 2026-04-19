@@ -3,6 +3,12 @@ pipeline {
 
     stages {
 
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/keerthi-rgs/chatbot-ai.git'
+            }
+        }
+
         stage('Install') {
             steps {
                 bat '"C:\\Users\\keert\\AppData\\Local\\Python\\bin\\python.exe" -m pip install -r requirements.txt'
@@ -15,9 +21,9 @@ pipeline {
             }
         }
 
-        stage('Run') {
+        stage('Done') {
             steps {
-                bat '"C:\\Users\\keert\\AppData\\Local\\Python\\bin\\python.exe" app.py'
+                echo 'Build successful ✅'
             }
         }
     }
