@@ -5,19 +5,19 @@ pipeline {
 
         stage('Install') {
             steps {
-                bat 'pip install -r requirements.txt'
+                bat '"C:\\Users\\keert\\AppData\\Local\\Python\\bin\\python.exe" -m pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'pytest'
+                bat '"C:\\Users\\keert\\AppData\\Local\\Python\\bin\\python.exe" -m pytest'
             }
         }
 
         stage('Run') {
             steps {
-                bat 'python app.py'
+                bat '"C:\\Users\\keert\\AppData\\Local\\Python\\bin\\python.exe" app.py'
             }
         }
     }
