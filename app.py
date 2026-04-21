@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify, render_template
+from chatbot import get_response   # import here
 
 app = Flask(__name__)
 
@@ -8,33 +9,20 @@ def home():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    msg = request.json["message"].lower()
+    try:
+        data = request.get_json()
 
-    if "hi" in msg or "hello" in msg:
-        reply = "Hello! How can I help you?"
+        if not data or "message" not in data:
+            return jsonify({"reply": "Invalid input"}), 400
 
-    elif "name" in msg:
-        reply = "I am your chatbot 🤖"
+        reply = get_response(data["message"])   # use function
 
-    elif "how are you" in msg:
-        reply = "I'm doing great! 😊"
+        return jsonify({"reply": reply})
 
-    elif "doctor" in msg:
-        reply = "We have cardiologists, neurologists, and general physicians."
+    except Exception as e:
+        print("Error:", e)
+        return jsonify({"reply": "Server error"}), 500
 
-    elif "appointment" in msg:
-        reply = "You can book appointment from our hospital portal."
-
-    elif "time" in msg:
-        reply = "Our hospital is open from 9 AM to 8 PM."
-
-    elif "bye" in msg:
-        reply = "Goodbye! Take care 👋"
-
-    else:
-        reply = "Sorry, I didn't understand that."
-
-    return jsonify({"reply": reply})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)

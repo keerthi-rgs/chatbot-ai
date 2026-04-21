@@ -1,11 +1,17 @@
-def get_response(user_input):
-    user_input = user_input.lower()
+def get_response(message):
+    msg = message.lower()
 
-    if "hello" in user_input:
-        return "Hi! How can I help you?"
-    elif "name" in user_input:
-        return "I am your AI chatbot"
-    elif "bye" in user_input:
+    if "hi" in msg or "hello" in msg:
+        return "Hello! How can I help you?"
+
+    elif "doctor" in msg:
+        return "We have many specialists available."
+
+    elif "appointment" in msg:
+        return "You can book appointment online."
+
+    elif "bye" in msg:
         return "Goodbye!"
+
     else:
-        return "Sorry, I don't understand"
+        return "Sorry, I didn't understand."
